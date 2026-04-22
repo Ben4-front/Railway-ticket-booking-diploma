@@ -1,0 +1,77 @@
+@import '../../../scss/mixins';
+
+.card {
+   @include card;
+
+   display: grid;
+   grid-template-rows: repeat(2, 1fr);
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-areas:
+      'from to'
+      'icons price';
+   background: var(--color-main-light);
+   border: 0.1rem solid var(--color-bars-light);
+   box-shadow: var(--border-shadow-last-ticket);
+
+   .direction {
+      &__city {
+         @include font(
+            var(--fw-4),
+            var(--fs-20),
+            var(--fh-23),
+            var(--color-main-dark)
+         );
+         text-transform: capitalize;
+         display: flex;
+         flex-direction: column;
+      }
+      &__from {
+         grid-area: from;
+      }
+      &__to {
+         grid-area: to;
+         text-align: right;
+      }
+   }
+   .icons {
+      grid-area: icons;
+      display: flex;
+      align-items: flex-end;
+
+      &__content {
+         width: 2.1rem;
+         height: 2.1rem;
+         margin-right: 1rem;
+      }
+   }
+   .price {
+      grid-area: price;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+
+      &__wrapper {
+         display: flex;
+         align-items: baseline;
+         justify-content: flex-end;
+      }
+
+      &__start {
+         margin-right: 0.5rem;
+      }
+
+      &__number {
+         @include font(
+            var(--fw-7),
+            var(--fs-36),
+            var(--fh-42),
+            var(--color-yellow-orange)
+         );
+      }
+      &__currency {
+         margin-left: 0.5rem;
+         width: 2rem;
+         height: 2.5rem;
+      }
+   }
+}

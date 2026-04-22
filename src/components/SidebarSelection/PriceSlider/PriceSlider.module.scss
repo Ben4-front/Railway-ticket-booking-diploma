@@ -1,0 +1,15 @@
+@import '../../../scss/mixins';
+
+.wrapper {
+   .top {
+      @include font(
+         var(--fw-4),
+         var(--fs-18),
+         var(--fh-21),
+         var(--color-main-light)
+      );
+      display: flex;
+      justify-content: space-between;
+   }
+   padding-bottom: 4rem;
+}

@@ -1,0 +1,16 @@
+@import '../../scss/_mixins';
+.seats-selection {
+   &__header {
+      @include font(
+         var(--fw-5),
+         var(--fs-30),
+         var(--fh-35),
+         var(--color-main-dark)
+      );
+      text-transform: uppercase;
+      margin-bottom: 5rem;
+   }
+   &__button-wrapper {
+      @include buttonForward;
+   }
+}

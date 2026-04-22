@@ -1,0 +1,20 @@
+@import '../../../../scss/mixins';
+
+.item {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   &__left {
+      display: flex;
+      align-items: baseline;
+   }
+   &__title {
+      @include font(
+         var(--fw-4),
+         var(--fs-18),
+         var(--fh-21),
+         var(--color-main-light)
+      );
+      margin: 1.7rem 3.4rem;
+   }
+}

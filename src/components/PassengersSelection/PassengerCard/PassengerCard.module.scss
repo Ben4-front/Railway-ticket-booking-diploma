@@ -1,0 +1,161 @@
+@import '../../../scss/_mixins';
+@import '../PassengersSelection.module.scss';
+
+@mixin inputFieldShort {
+   width: 20.5rem;
+   height: 5rem;
+   border: 0.1rem solid var(--color-grey);
+   border-radius: 5px;
+   @include font(
+      var(--fw-4),
+      var(--fs-24),
+      var(--fh-28),
+      var(--color-main-dark)
+   );
+}
+
+.closedPassengerCard {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   @include cardClosed;
+   @include padding;
+   .text {
+      @include font(
+         var(--fw-4),
+         var(--fs-30),
+         var(--fh-35),
+         var(--color-main-dark)
+      );
+      margin-left: 2rem;
+   }
+   margin-bottom: 3.5rem;
+}
+
+.passengerCard {
+   @include cardClosed;
+   margin-bottom: 3.5rem;
+
+   .section {
+      @include padding;
+      border-bottom: 1px dashed var(--color-grey);
+      .errorText {
+         @include font(
+            var(--fw-4),
+            var(--fs-24),
+            var(--fh-28),
+            var(--color-main-dark)
+         );
+      }
+   }
+   &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--color-senary-light);
+      width: 100%;
+
+      .left {
+         display: flex;
+         align-items: center;
+         .text {
+            @include font(
+               var(--fw-4),
+               var(--fs-30),
+               var(--fh-35),
+               var(--color-main-dark)
+            );
+            margin-left: 2rem;
+         }
+      }
+   }
+
+   &__bottom {
+      display: flex;
+      justify-content: flex-end;
+      @include padding;
+      &-error {
+         background: var(--color-error);
+      }
+      > button {
+         @include transperrentBlackButton;
+      }
+      .changeButton {
+         @include transperrentBlackButton;
+      }
+   }
+
+   .row {
+      display: flex;
+      justify-content: space-between;
+      @include font(
+         var(--fw-4),
+         var(--fs-24),
+         var(--fh-28),
+         var(--color-main-dark)
+      );
+
+      &:not(:last-child) {
+         margin-bottom: 5rem;
+      }
+
+      .seatData {
+         color: var(--color-yellow-orange);
+      }
+
+      .inputField {
+         width: 28rem;
+         height: 5rem;
+         border: 0.1rem solid var(--color-grey);
+         border-radius: 5px;
+      }
+
+      .inputFieldPassport {
+         @include inputFieldShort;
+      }
+      .inputFieldBirthSertif {
+         @include inputFieldShort;
+         &::placeholder {
+            @include font-no-color(var(--fw-4), var(--fs-18), var(--fh-21));
+         }
+      }
+      .seats {
+         padding-bottom: 2rem;
+      }
+      .seatDirection {
+         color: var(--color-yellow-orange);
+      }
+   }
+   .rowShort {
+      justify-content: flex-start;
+
+      .genderRadioBtn,
+      .documentType {
+         margin-right: 3.5rem;
+      }
+   }
+   .rowSeats {
+      justify-content: flex-start;
+
+      .departureOnly {
+         margin-right: 8rem;
+         margin-left: 8rem;
+      }
+
+      .link {
+         color: var(--color-yellow-orange);
+      }
+   }
+}
+
+@media only screen and (max-width: 1300px) {
+   .passengerCard {
+      .row {
+         justify-content: flex-start;
+         .inputField {
+            width: 20.5rem;
+            margin-right: 3.5rem;
+         }
+      }
+   }
+}

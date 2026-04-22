@@ -1,0 +1,126 @@
+@import '../../../scss/mixins';
+@mixin h3 {
+   > h3 {
+      padding-bottom: 3rem;
+      color: var(--color-main-light);
+   }
+}
+
+//ниже 822px нужно переставлять блоки
+.footer {
+   @include font(
+      var(--fw-4),
+      var(--fs-24),
+      var(--fh-28),
+      var(--color-main-light)
+   );
+   background-color: var(--color-main-dark);
+}
+.wrapper {
+   padding-top: 5rem;
+   display: flex;
+   justify-content: space-between;
+   padding-bottom: 5rem;
+}
+
+.contact {
+   @include h3;
+}
+
+.subscription {
+   @include h3;
+
+   &__subheader {
+      @include font(
+         var(--fw-4),
+         var(--fs-24),
+         var(--fh-28),
+         var(--color-main-light)
+      );
+      margin-bottom: 2rem;
+   }
+
+   .loading {
+      margin-top: 0.5rem;
+      background-color: var(--color-hover);
+      color: var(--color-secondary-dark);
+   }
+
+   .error {
+      margin-top: 0.5rem;
+      background-color: var(--color-error);
+   }
+}
+
+.inputGroup {
+   &__input {
+      padding: 1.3rem;
+      width: 30rem;
+   }
+   &__btn {
+      @include button-white;
+      text-transform: uppercase;
+      padding: 1.3rem;
+      margin-left: 3.3rem;
+   }
+}
+
+.subscribe {
+   @include h3;
+   margin-top: 4.5rem;
+}
+
+.bottomNav {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding-bottom: 3.5rem;
+   border-top: 0.1rem solid var(--color-secondary-light);
+
+   &__icon {
+      width: 3.6rem;
+      height: 3.6rem;
+   }
+
+   &__year {
+      @include font-no-color(var(--fw-3), var(--fs-24), var(--fh-28));
+      text-transform: uppercase;
+   }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1799px) {
+   .wrapper {
+      padding-left: 8rem;
+      padding-right: 11rem;
+   }
+   .bottomNav {
+      padding-right: 11rem;
+   }
+   .inputGroup {
+      width: 45rem;
+   }
+}
+
+@media only screen and (min-width: 1800px) {
+   .wrapper {
+      padding-left: 34rem;
+      padding-right: 34rem;
+   }
+   .bottomNav {
+      padding-right: 26rem;
+   }
+   .inputGroup {
+      width: 45rem;
+   }
+}
+
+@media only screen and (max-width: 1199px) {
+   .wrapper {
+      justify-content: space-around;
+   }
+   .inputGroup {
+      &__input {
+         width: 25rem;
+      }
+   }
+}

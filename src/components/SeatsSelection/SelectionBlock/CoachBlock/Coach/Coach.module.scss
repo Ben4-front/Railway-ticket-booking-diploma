@@ -1,0 +1,95 @@
+@import '../../../../../scss/mixins';
+
+.top {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   margin-bottom: 2rem;
+   .coachNumber {
+      display: flex;
+      flex-direction: column;
+      padding-top: 3rem;
+      width: 19rem;
+      background-color: var(--color-tickets);
+      text-align: center;
+
+      &__name {
+         @include font(
+            var(--fw-7),
+            var(--fs-30),
+            var(--fh-35),
+            var(--color-main-dark)
+         );
+      }
+      &__coach {
+         @include font(
+            var(--fw-4),
+            var(--fs-24),
+            var(--fh-28),
+            var(--color-main-dark)
+         );
+      }
+   }
+   .header {
+      @include font(var(--fw-4), var(--fs-18), var(--fh-21), var(--color-grey));
+      text-transform: capitalize;
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+   }
+   .seats {
+      .seatsTotal {
+         color: var(--color-black);
+         margin-left: 1rem;
+      }
+
+      .details {
+         @include font(
+            var(--fw-4),
+            var(--fs-24),
+            var(--fh-28),
+            var(--color-black)
+         );
+         text-transform: capitalize;
+
+         .seatsNumber {
+            font-weight: var(--fw-7);
+            margin-left: 1rem;
+         }
+         &:nth-child(n):not(:last-child) {
+            margin-bottom: 2.5rem;
+         }
+      }
+   }
+   .service {
+      .serviceProvider {
+         color: var(--color-bars-light);
+         text-transform: uppercase;
+         margin-left: 2rem;
+      }
+   }
+}
+.middle {
+   @include font(var(--fw-4), var(--fs-16), var(--fh-19), var(--color-black));
+   padding: 1.6rem 1.1rem;
+   background-color: #f3f3f3;
+   width: 20rem;
+   margin-right: 4rem;
+   margin-left: auto;
+   border-radius: 0.5rem;
+}
+
+.bottom {
+   padding-top: 2rem;
+   padding-bottom: 2.5rem;
+}
+
+.lastBookedText {
+   @include font(
+      var(--fw-5),
+      var(--fs-21),
+      var(--fh-25),
+      var(--color-main-dark)
+   );
+   text-align: center;
+   margin-top: 5rem;
+   margin-bottom: 5rem;
+}

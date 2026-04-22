@@ -1,0 +1,127 @@
+@import '../../../scss/mixins';
+@import '../SidebarDetails.module.scss';
+@mixin row {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.wrapperTop {
+   @include row;
+   .header {
+      @include row;
+      &__text {
+         @include header;
+         text-transform: capitalize;
+         margin-left: 1rem;
+      }
+   }
+   .date {
+      @include font(
+         var(--fw-4),
+         var(--fs-18),
+         var(--fh-21),
+         var(--color-main-light)
+      );
+   }
+}
+
+.expandBlock {
+   padding-top: 5rem;
+   padding-bottom: 3rem;
+   .row {
+      @include row;
+      padding-bottom: 5rem;
+      .name {
+         @include font(
+            var(--fw-4),
+            var(--fs-18),
+            var(--fh-21),
+            var(--color-secondary-light)
+         );
+      }
+      .trainName {
+         @include font(
+            var(--fw-7),
+            var(--fs-16),
+            var(--fh-19),
+            var(--color-main-light)
+         );
+      }
+   }
+   .totalTime {
+      @include font(
+         var(--fw-4),
+         var(--fs-18),
+         var(--fh-21),
+         var(--color-secondary-light)
+      );
+      text-align: center;
+   }
+   .directions {
+      .top {
+         display: flex;
+         justify-content: space-between;
+         align-items: flex-start;
+         .direction {
+            display: flex;
+            flex-direction: column;
+
+            .time {
+               @include font(
+                  var(--fw-7),
+                  var(--fs-24),
+                  var(--fh-28),
+                  var(--color-main-light)
+               );
+            }
+            .date {
+               @include font(
+                  var(--fw-4),
+                  var(--fs-18),
+                  var(--fh-21),
+                  var(--color-grey)
+               );
+            }
+         }
+         .right {
+            text-align: right;
+         }
+
+         .arrow {
+            width: 3rem;
+            height: 2rem;
+         }
+      }
+      .bottom {
+         display: flex;
+         justify-content: space-between;
+         .direction {
+            display: flex;
+            flex-direction: column;
+
+            .city {
+               @include font(
+                  var(--fw-4),
+                  var(--fs-18),
+                  var(--fh-21),
+                  var(--color-main-light)
+               );
+               text-transform: capitalize;
+               margin-top: 2rem;
+            }
+            .station {
+               @include font(
+                  var(--fw-4),
+                  var(--fs-16),
+                  var(--fh-19),
+                  var(--color-grey)
+               );
+            }
+         }
+         .right {
+            text-align: right;
+         }
+      }
+   }
+}

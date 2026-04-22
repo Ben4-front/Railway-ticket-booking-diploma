@@ -1,0 +1,21 @@
+@import '../../../../scss/mixins';
+
+.contact {
+   &__item {
+      display: flex;
+      margin-bottom: 3rem;
+
+      &:hover {
+         filter: invert(50%) sepia(55%) saturate(500%) hue-rotate(335deg)
+            brightness(140%) contrast(140%);
+      }
+   }
+   &__icon {
+      width: 3rem;
+      height: 3rem;
+      margin-right: 4rem;
+   }
+   &__text {
+      @include font-no-color(var(--fw-4), var(--fs-24), var(--fh-28));
+   }
+}

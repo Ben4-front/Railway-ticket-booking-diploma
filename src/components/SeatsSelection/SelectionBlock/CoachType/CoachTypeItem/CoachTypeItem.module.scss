@@ -1,0 +1,18 @@
+@import '../../SelectionBlock.module.scss';
+
+.type {
+   @include flexCenter;
+   align-items: center;
+   width: 25%;
+   .icon {
+      height: 5rem;
+      > img {
+         fill: var(--color-yellow-orange);
+      }
+   }
+   .name {
+      @include font(var(--fw-4), var(--fs-24), var(--fh-28), var(--color-grey));
+      text-transform: capitalize;
+      margin-top: 2rem;
+   }
+}

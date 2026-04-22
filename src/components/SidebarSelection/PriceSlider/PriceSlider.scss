@@ -1,0 +1,13 @@
+@import '../../../scss/mixins';
+
+.price-slider {
+   @include slider(2.8rem, 1.9rem);
+}
+
+.ant-slider {
+   @include hover;
+}
+
+.ant-tooltip {
+   @include tooltip;
+}

@@ -1,0 +1,90 @@
+@import '../MainSearchBlock.module.scss';
+
+@mixin hover-btn {
+   &:hover {
+      color: var(--color-yellow-orange);
+   }
+}
+
+.ant-picker {
+   @include input(32rem, 6rem);
+   &-dropdown {
+      width: 32rem;
+   }
+
+   &-panel {
+      width: 100%;
+      &-container {
+         border-radius: 0.5rem;
+      }
+   }
+   &-date-panel {
+      width: 100%;
+   }
+   &-header {
+      @include font-no-color(var(--fw-5), var(--fs-24), var(--fh-28));
+      border-bottom: solid 0.2rem var(--color-secondary-light);
+      padding-bottom: 1rem;
+      .ant-picker-month-btn {
+         @include hover-btn;
+      }
+      .ant-picker-year-btn {
+         @include hover-btn;
+      }
+   }
+
+   &-body {
+      margin: auto;
+   }
+   &-input {
+      > input {
+         @include font-no-color(var(--fw-4), var(--fs-18), var(--fh-21));
+         &::placeholder {
+            color: var(--color-secondary-light);
+            text-transform: uppercase;
+         }
+      }
+   }
+   &-cell {
+      &:hover {
+         background: var(--color-bg-calendar);
+      }
+      &-selected {
+         border: 0.2rem solid var(--color-yellow-orange);
+         border-radius: 0.5rem;
+         color: var(--color-main-dark);
+         background-color: var(--color-bg-calendar);
+      }
+   }
+   &-suffix {
+      display: none;
+   }
+   &-content {
+      @include font-no-color(var(--fw-4), var(--fs-18), var(--fh-21));
+      > thead {
+         display: none;
+      }
+      &-header-super-prev-btn {
+         display: none;
+      }
+   }
+   &-clear {
+      left: 95%;
+   }
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+   background: transparent;
+   color: inherit;
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1099px) {
+   .ant-picker {
+      @include input-width-tablet;
+      &-dropdown {
+         @include input-width-tablet;
+      }
+   }
+}

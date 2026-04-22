@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&subset=cyrillic-ext');
+@import './scss/constants';
+@import './scss/mixins';
+
+:root {
+   --font-family: 'Roboto', sans-serif;
+   --color-main-light: #ffffff;
+   --color-secondary-light: #e5e5e5;
+   --color-tertiarly-light: #f7f5f9;
+   --color-quaterniary-light: #e4e0e9;
+   --color-quinary-light: #f7f6f6;
+   --color-senary-light: #f9f9f9;
+   --color-main-dark: #292929;
+   --color-secondary-dark: #2d2b2f;
+   --color-hover: #ffca62;
+   --color-bars: #3e3c41;
+   --color-bars-light: #c4c4c4;
+
+   --color-black: #000000;
+   --color-yellow-orange: #ffa800;
+   --color-grey: #928f94;
+   --color-light-grey: #f4f3f6;
+   --color-popover: #f5f4f6;
+   --color-tickets: #ffd98f;
+
+   --color-error: rgba(255, 61, 0, 0.38);
+   --color-error-light: rgba(245, 126, 106, 0.892);
+   --color-info: rgba(255, 245, 0, 0.36);
+   --color-bg-calendar: rgba(255, 168, 0, 0.31);
+   --color-search-block: rgba(41, 41, 41, 0.8);
+
+   --border-shadow-last-ticket: 0px 0.2rem 0.2rem rgba(62, 60, 65, 0.25);
+   --border-shadow-trains-card: 0px 0.2rem 0.2rem rgba(0, 0, 0, 0.3);
+   --box-shadow-popover: 0px 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+   --box-shadow-selection-block: 0px 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
+
+   --filter: drop-shadow(var(--box-shadow-popover));
+
+   --fw-1: 100;
+   --fw-3: 300;
+   --fw-4: 400;
+   --fw-5: 500;
+   --fw-7: 700;
+   --fw-9: 900;
+
+   --fs-16: 1.6rem;
+   --fs-18: 1.8rem;
+   --fs-20: 2rem;
+   --fs-21: 2.1rem;
+   --fs-24: 2.4rem;
+   --fs-30: 3rem;
+   --fs-36: 3.6rem;
+   --fs-42: 4.2rem;
+   --fs-48: 4.8rem;
+   --fs-52: 5.2rem;
+   --fs-72: 7.2rem;
+
+   --fh-19: 1.9rem;
+   --fh-21: 2.1rem;
+   --fh-23: 2.3rem;
+   --fh-25: 2.5rem;
+   --fh-28: 2.8rem;
+   --fh-35: 3.5rem;
+   --fh-42: 4.2rem;
+   --fh-45: 4.5rem;
+   --fh-50: 5rem;
+   --fh-55: 5.5rem;
+   --fh-84: 8.4rem;
+}

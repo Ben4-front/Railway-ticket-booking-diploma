@@ -1,0 +1,33 @@
+@import '../../scss/_mixins';
+
+@mixin cardClosed {
+   background: var(--color-main-light);
+   border: 1px solid var(--color-bars-light);
+   box-shadow: var(--box-shadow-selection-block);
+}
+
+@mixin padding {
+   padding: 3rem 2.6rem;
+}
+
+.buttonWrapper {
+   @include buttonForward;
+}
+
+.addPassenger {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   @include cardClosed;
+   @include padding;
+
+   .text {
+      @include font(
+         var(--fw-4),
+         var(--fs-30),
+         var(--fh-35),
+         var(--color-main-dark)
+      );
+   }
+}

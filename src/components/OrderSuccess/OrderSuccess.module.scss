@@ -1,0 +1,131 @@
+@import '../../scss/mixins';
+
+.orderSuccess {
+   margin-top: -32rem;
+   margin-bottom: 17.5rem;
+   .thankYouText {
+      @include font(
+         var(--fw-7),
+         var(--fs-72),
+         var(--fh-84),
+         var(--color-main-light)
+      );
+      padding-bottom: 3.5rem;
+      margin-right: auto;
+      margin-left: auto;
+      max-width: 140rem;
+   }
+   .afterOrder {
+      max-width: 140rem;
+      background: var(--color-main-light);
+      border: 0.1rem solidvar(--color-bars-light);
+      box-shadow: var(--box-shadow-selection-block);
+      margin-right: auto;
+      margin-left: auto;
+
+      .orderData {
+         padding: 6rem 8rem 4rem;
+         @include font(
+            var(--fw-7),
+            var(--fs-36),
+            var(--fh-42),
+            var(--color-bars)
+         );
+         display: flex;
+         justify-content: space-between;
+         .priceWord {
+            font-weight: var(--fw-4);
+            color: var(--color-grey);
+            margin-right: 3rem;
+         }
+         .currency {
+            margin-left: 1rem;
+            margin-bottom: 0.7rem;
+         }
+      }
+      .nextSteps {
+         padding: 4rem;
+         display: flex;
+         justify-content: center;
+         background: var(--color-light-grey);
+
+         .stepItem {
+            width: 20rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &:not(:last-child) {
+               margin-right: 12rem;
+            }
+            .stepIcon {
+               margin-bottom: 1rem;
+            }
+            .stepText {
+               @include font(
+                  var(--fw-4),
+                  var(--fs-18),
+                  var(--fh-21),
+                  var(--color-main-dark)
+               );
+               text-align: center;
+               &-bold {
+                  font-weight: var(--fw-5);
+               }
+            }
+         }
+      }
+      .thankYouLetter {
+         padding: 9.5rem 11rem 13rem 20.5rem;
+         .top {
+            @include font(
+               var(--fw-7),
+               var(--fs-36),
+               var(--fh-42),
+               var(--color-main-dark)
+            );
+            margin-bottom: 5rem;
+            text-transform: capitalize;
+         }
+         .middle {
+            @include font(
+               var(--fw-4),
+               var(--fs-24),
+               var(--fh-28),
+               var(--color-main-dark)
+            );
+            margin-bottom: 9rem;
+         }
+         .bottom {
+            @include font(
+               var(--fw-7),
+               var(--fs-24),
+               var(--fh-28),
+               var(--color-main-dark)
+            );
+         }
+      }
+      .review {
+         display: flex;
+         justify-content: space-between;
+         padding: 6rem 8rem 5rem;
+         background: var(--color-yellow-orange);
+         .left {
+            display: flex;
+            align-items: center;
+            .reviewText {
+               @include font(
+                  var(--fw-4),
+                  var(--fs-24),
+                  var(--fh-28),
+                  var(--color-main-dark)
+               );
+               margin-right: 4rem;
+            }
+         }
+         .changeButton {
+            text-transform: uppercase;
+            @include transperrentBlackButton(1.7rem, 1.2rem);
+         }
+      }
+   }
+}

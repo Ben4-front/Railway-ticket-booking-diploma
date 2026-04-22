@@ -1,0 +1,31 @@
+@import '../../../../SelectionBlock.module.scss';
+
+.seatItem .ant-popover {
+   &-title {
+      text-align: center;
+   }
+
+   &-inner {
+      border-radius: 0.5rem;
+      @include font(
+         var(--fw-4),
+         var(--fs-16),
+         var(--fh-19),
+         var(--color-black)
+      );
+      &-content {
+         background: var(--color-popover);
+         box-shadow: var(--box-shadow-popover);
+         display: flex;
+         justify-content: space-between;
+         & button {
+            padding: 1rem;
+            border: 0.1rem solid var(--color-bars-light);
+            border-radius: 0.5rem;
+            &:last-child {
+               margin-left: 1rem;
+            }
+         }
+      }
+   }
+}

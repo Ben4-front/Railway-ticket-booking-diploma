@@ -1,0 +1,53 @@
+@import '../../../SelectionBlock.module.scss';
+.coach {
+   width: 80.5rem;
+   margin: auto;
+   .top {
+      .topRow {
+         border-top: 0.4rem solid var(--color-grey);
+         display: flex;
+         justify-content: center;
+      }
+      .bottomRow {
+         display: flex;
+         justify-content: center;
+      }
+   }
+
+   .bottom {
+      display: flex;
+      height: 2.7rem;
+      margin-top: 3rem;
+      border: 0.4rem solid var(--color-grey);
+      border-top: none;
+   }
+}
+
+.coach__fourthCl {
+   width: 80.5rem;
+   margin: auto;
+   .top__fourthCl {
+      border: 0.4rem solid var(--color-grey);
+      border-bottom: none;
+      .topRow__fourthCl {
+         margin-top: 0.5rem;
+         display: flex;
+      }
+      .bottomRow__fourthCl {
+         display: flex;
+      }
+      padding-bottom: 1rem;
+   }
+   .bottom__fourthCl {
+      padding-top: 1rem;
+      .topRow__fourthCl {
+         display: flex;
+      }
+      .bottomRow__fourthCl {
+         display: flex;
+         border-right: 0.4rem solid var(--color-grey);
+      }
+
+      border-bottom: 0.4rem solid var(--color-grey);
+   }
+}

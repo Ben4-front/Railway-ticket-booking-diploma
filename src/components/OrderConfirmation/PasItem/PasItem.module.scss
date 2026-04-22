@@ -1,0 +1,41 @@
+@import '../../../scss/mixins';
+
+.card {
+   display: flex;
+   padding: 3rem;
+   &:not(:last-child) {
+      border-bottom: 0.1rem dashed var(--color-secondary-light);
+   }
+   &:first-child {
+      padding-top: 6rem;
+   }
+   &:last-child {
+      padding-bottom: 9rem;
+   }
+
+   @include font(
+      var(--fw-4),
+      var(--fs-18),
+      var(--fh-21),
+      var(--color-main-dark)
+   );
+   .left {
+      margin-right: 3rem;
+      text-align: center;
+      .icon {
+         margin-bottom: 2rem;
+      }
+   }
+   .right {
+      .fullName {
+         margin-bottom: 2rem;
+         text-transform: capitalize;
+      }
+      .data {
+         color: var(--color-grey);
+         &:not(:last-child) {
+            margin-bottom: 1rem;
+         }
+      }
+   }
+}

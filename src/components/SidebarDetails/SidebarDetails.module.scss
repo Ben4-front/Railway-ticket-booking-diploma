@@ -1,0 +1,71 @@
+@import '../../scss/mixins';
+
+@mixin header {
+   @include font(
+      var(--fw-7),
+      var(--fs-30),
+      var(--fh-35),
+      var(--color-main-light)
+   );
+}
+
+.wrapper {
+   background-color: var(--color-bars);
+
+   .section {
+      min-height: 5rem;
+      min-width: 36rem;
+      padding: 2rem 2.7rem 2rem 2.7rem;
+      border-bottom: 0.1rem solid var(--color-secondary-light);
+
+      .main-header {
+         @include font(
+            var(--fw-5),
+            var(--fs-30),
+            var(--fh-35),
+            var(--color-secondary-light)
+         );
+         text-transform: uppercase;
+         text-align: center;
+         padding-top: 1.5rem;
+         padding-bottom: 1rem;
+      }
+
+      &:last-child {
+         border-bottom: none;
+      }
+   }
+
+   .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 3.5rem;
+      padding-top: 3rem;
+      .header-total {
+         @include header;
+         text-transform: uppercase;
+      }
+      .sum {
+         @include font(
+            var(--fw-7),
+            var(--fs-48),
+            var(--fh-50),
+            var(--color-yellow-orange)
+         );
+         display: flex;
+         .currency {
+            margin-left: 1rem;
+         }
+      }
+   }
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1400px) {
+   .wrapper {
+      .section {
+         padding: 2rem 1rem;
+         min-width: 30rem;
+      }
+   }
+}

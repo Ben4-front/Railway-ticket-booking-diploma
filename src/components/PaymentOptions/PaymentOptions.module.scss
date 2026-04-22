@@ -1,0 +1,130 @@
+@import '../../scss/mixins';
+@import '../PassengersSelection/PassengersSelection.module.scss';
+
+@mixin inputField($w) {
+   width: $w;
+   height: 5rem;
+   border: 0.1rem solid var(--color-grey);
+   border-radius: 5px;
+   @include font(
+      var(--fw-4),
+      var(--fs-24),
+      var(--fh-28),
+      var(--color-main-dark)
+   );
+}
+
+.card {
+   @include cardClosed;
+   margin-bottom: 3.5rem;
+   .section {
+      @include padding;
+      &:not(:last-child) {
+         border-bottom: 1px dashed var(--color-grey);
+      }
+      .errorText {
+         @include font(
+            var(--fw-4),
+            var(--fs-24),
+            var(--fh-28),
+            var(--color-main-dark)
+         );
+      }
+   }
+
+   .header {
+      background-color: var(--color-senary-light);
+      width: 100%;
+   }
+
+   .text {
+      @include font(
+         var(--fw-4),
+         var(--fs-30),
+         var(--fh-35),
+         var(--color-main-dark)
+      );
+      margin-left: 2rem;
+   }
+
+   .row {
+      display: flex;
+      justify-content: space-between;
+      @include font(
+         var(--fw-4),
+         var(--fs-24),
+         var(--fh-28),
+         var(--color-main-dark)
+      );
+
+      &:not(:last-child) {
+         margin-bottom: 5rem;
+      }
+
+      .inputField {
+         @include inputField(28rem);
+      }
+      .fullName {
+         text-transform: capitalize;
+      }
+   }
+
+   .rowShort {
+      &:not(:last-child) {
+         margin-bottom: 4rem;
+      }
+      &:last-child {
+         margin-bottom: 9rem;
+      }
+      .inputField {
+         @include inputField(36rem);
+      }
+   }
+}
+
+.buttonWrapper {
+   @include buttonForward;
+}
+
+.onlinePayments {
+   padding-top: 30px;
+   display: flex;
+   @include font(
+      var(--fw-7),
+      var(--fs-24),
+      var(--fh-28),
+      var(--color-main-dark)
+   );
+   padding-bottom: 3rem;
+
+   .paymentMethod {
+      width: 18rem;
+      &:first-child {
+         margin-right: 5rem;
+      }
+   }
+}
+
+.radioGroup {
+   width: 100%;
+   padding-bottom: 5rem;
+   .radioRow {
+      padding-top: 2rem;
+   }
+}
+
+@media only screen and (max-width: 1300px) {
+   .card {
+      .row {
+         .inputField {
+            width: 20.5rem;
+            margin-right: 3.5rem;
+         }
+      }
+      .rowShort {
+         .inputField {
+            @include inputField(30rem);
+         }
+      }
+   }
+}

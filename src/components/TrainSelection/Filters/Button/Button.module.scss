@@ -1,0 +1,8 @@
+.button {
+   &-active {
+      color: var(--color-main-dark);
+   }
+   &:disabled {
+      color: var(--color-secondary-light);
+   }
+}

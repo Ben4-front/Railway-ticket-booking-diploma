@@ -1,0 +1,26 @@
+.wrapper {
+   max-width: 192rem;
+   width: 100%;
+   margin: auto;
+   background-color: var(--color-secondary-light);
+
+   .header {
+      min-height: 59rem;
+      max-height: 98rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &-main {
+         background-image: url('./img/background-main.png');
+         border-bottom: solid 1rem var(--color-yellow-orange);
+      }
+      &-search {
+         background-image: url('./img/background-search.png');
+      }
+      &-success {
+         background-image: url('./img/background-success.png');
+         min-height: 83rem;
+      }
+   }
+}

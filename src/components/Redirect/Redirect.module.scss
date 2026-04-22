@@ -1,0 +1,25 @@
+@import '../../scss/mixins';
+
+.redirect {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   .text {
+      @include font(
+         var(--fw-4),
+         var(--fs-30),
+         var(--fh-35),
+         var(--color-main-dark)
+      );
+      text-align: center;
+   }
+
+   .buttonWrapper {
+      > button {
+         margin: 10rem 0;
+         color: var(--color-main-light);
+         @include button-gold;
+      }
+   }
+}

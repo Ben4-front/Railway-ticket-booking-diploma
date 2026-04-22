@@ -1,0 +1,53 @@
+@import '../MainSearchBlock/MainSearchBlock.module.scss';
+@import '../../scss/mixins';
+
+@mixin header {
+   @include font-no-color(var(--fw-4), var(--fs-30), var(--fh-35));
+   padding-top: 2rem;
+   padding-bottom: 1.5rem;
+
+   color: var(--color-main-light);
+   &-invalid {
+      color: var(--color-error-light);
+   }
+}
+
+.wrapper {
+   background-color: var(--color-bars);
+
+   .section {
+      min-height: 5rem;
+      padding: 2rem 3.6rem 2rem 2.9rem;
+
+      border-bottom: 0.1rem solid var(--color-secondary-light);
+      &:last-child {
+         border-bottom: none;
+      }
+      &__header {
+         @include header;
+      }
+      .date {
+         @include inputs(2rem, 2.2rem, 1rem, 2rem, uppercase, 29.5rem, 4.3rem);
+         margin-bottom: 1.5rem;
+      }
+   }
+}
+
+@media only screen and (min-width: 1150px) and (max-width: 1400px) {
+   .wrapper {
+      .section {
+         padding: 2rem 1rem;
+         .date {
+            @include inputs(
+               2rem,
+               2.2rem,
+               1rem,
+               5rem,
+               uppercase,
+               29.5rem,
+               4.3rem
+            );
+         }
+      }
+   }
+}

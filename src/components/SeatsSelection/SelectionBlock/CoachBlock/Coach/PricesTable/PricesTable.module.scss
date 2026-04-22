@@ -1,0 +1,15 @@
+@import '../../../../../../scss/mixins';
+
+.priceAmount {
+   display: flex;
+   @include font(var(--fw-7), var(--fs-24), var(--fh-28), var(--color-black));
+
+   .currency {
+      width: 1.4rem;
+      height: 1.7rem;
+      margin-left: 0.7rem;
+   }
+   &:nth-child(n):not(:last-child) {
+      margin-bottom: 2.5rem;
+   }
+}

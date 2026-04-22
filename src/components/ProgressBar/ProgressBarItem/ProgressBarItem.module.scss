@@ -1,0 +1,109 @@
+@import '../../../scss/mixins';
+
+@mixin name {
+   @include font(
+      var(--fw-7),
+      var(--fs-30),
+      var(--fh-35),
+      var(--color-main-light)
+   );
+   margin-left: 2.8rem;
+}
+
+.step {
+   height: 9.8rem;
+   display: flex;
+   align-items: center;
+
+   &__icon {
+      margin-left: 3.5rem;
+      width: 5.6rem;
+      height: 5.6rem;
+   }
+   &__name {
+      text-transform: capitalize;
+      @include name;
+   }
+
+   &-first {
+      width: 61rem;
+   }
+   &-second {
+      width: 36rem;
+   }
+   &-third {
+      width: 36rem;
+   }
+   &-fourth {
+      width: 57rem;
+   }
+   &-done {
+      background-color: var(--color-yellow-orange);
+   }
+
+   &__name {
+      @include name;
+   }
+}
+.breaker {
+   background-color: var(--color-bars);
+   height: 9.8rem;
+   width: 3.7rem;
+   clip-path: none;
+
+   &-done {
+      background-color: var(--color-yellow-orange);
+   }
+
+   &-cut {
+      background-color: var(--color-yellow-orange);
+      clip-path: polygon(100% 50%, 0 0, 0 100%);
+   }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1152px) {
+   .step {
+      &__icon {
+         margin-left: 1.5rem;
+         width: 4.5rem;
+         height: 4.5rem;
+      }
+      &__name {
+         @include font-no-color(var(--fw-7), var(--fs-24), var(--fh-28));
+         margin-left: 2rem;
+      }
+   }
+}
+
+@media only screen and (min-width: 1420px) and (max-width: 1719px) {
+   .step {
+      &-first {
+         padding-left: 5rem;
+      }
+      &-fourth {
+         padding-right: 5rem;
+      }
+   }
+}
+
+@media only screen and (min-width: 1720px) and (max-width: 1919px) {
+   .step {
+      &-first {
+         padding-left: 16rem;
+      }
+      &-fourth {
+         padding-right: 16rem;
+      }
+   }
+}
+
+@media only screen and (min-width: 1920px) {
+   .step {
+      &-first {
+         padding-left: 21rem;
+      }
+      &-fourth {
+         padding-right: 21rem;
+      }
+   }
+}

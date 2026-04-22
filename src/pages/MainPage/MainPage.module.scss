@@ -1,0 +1,58 @@
+@import '../../scss/mixins';
+
+.wrapper {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   .title {
+      @include font(
+         var(--fw-1),
+         var(--fs-72),
+         var(--fh-84),
+         var(--color-main-light)
+      );
+      width: 51rem;
+      &-bold {
+         font-weight: var(--fw-7);
+      }
+   }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1099px) {
+   .wrapper {
+      .title {
+         @include font-no-color(var(--fw-1), var(--fs-42), var(--fh-45));
+         width: 30rem;
+      }
+   }
+}
+
+@media only screen and (min-width: 1100px) and (max-width: 1299px) {
+   .wrapper {
+      .title {
+         @include font-no-color(var(--fw-1), var(--fs-52), var(--fh-55));
+         width: 31rem;
+      }
+   }
+}
+
+@media only screen and (min-width: 1300px) and (max-width: 1719px) {
+   .wrapper {
+      margin-left: 9rem;
+   }
+}
+
+@media only screen and (min-width: 1720px) and (max-width: 1919px) {
+   .wrapper {
+      margin-left: 25rem;
+      margin-right: 13rem;
+   }
+}
+
+@media only screen and (min-width: 1920px) {
+   .wrapper {
+      margin-left: 35rem;
+      margin-right: 23rem;
+   }
+}

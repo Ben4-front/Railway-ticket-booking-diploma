@@ -1,0 +1,105 @@
+@import '../../../../SelectionBlock.module.scss';
+
+$border: 0.4rem solid var(--color-grey);
+
+@mixin twoRows {
+   width: 2.6rem;
+   height: 3rem;
+   &__bottomLeft {
+      border-bottom: $border;
+      border-left: $border;
+      margin-right: 3.3rem;
+   }
+   &__bottomRight {
+      border-bottom: $border;
+   }
+
+   &__topLeft {
+      border-left: $border;
+      margin-right: 3.3rem;
+   }
+
+   &-last {
+      border-right: $border;
+   }
+}
+
+.seat-first {
+   width: 2.6rem;
+   height: 6rem;
+   border-bottom: $border;
+
+   &__odd {
+      margin-right: 3.3rem;
+      border-left: $border;
+      border-bottom: $border;
+   }
+
+   &-last {
+      border-right: $border;
+   }
+}
+
+.seat-second {
+   @include twoRows;
+}
+
+.seat-third {
+   @include twoRows;
+
+   &-side {
+      width: 4.3rem;
+      height: 2.3rem;
+      &-even {
+         border-right: $border;
+         &-last {
+            border-right: none;
+         }
+      }
+   }
+}
+
+.seat-fourth {
+   width: 2.6rem;
+   height: 1.8rem;
+   margin-bottom: 0.5rem;
+   margin-right: 1.9rem;
+   &__first {
+      margin-left: 0.8rem;
+   }
+   &__37 {
+      margin-left: 1.2rem;
+   }
+   &__38 {
+      margin-left: 5.6rem;
+   }
+   &__68 {
+      margin-right: 6.7rem;
+   }
+}
+
+.seat {
+   @include font(var(--fw-7), var(--fs-16), var(--fh-19), var(--color-black));
+   display: flex;
+   justify-content: center;
+   align-items: flex-end;
+   box-sizing: content-box;
+   background-color: var(--color-tertiarly-light);
+
+   &-clicked {
+      background-color: var(--color-info);
+   }
+   &-chosen {
+      background-color: var(--color-hover);
+   }
+   &-taken {
+      background-color: var(--color-bars-light);
+      color: var(--color-main-light);
+   }
+}
+
+button {
+   &:disabled {
+      cursor: not-allowed;
+   }
+}

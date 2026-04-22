@@ -1,0 +1,243 @@
+@mixin font-no-color($fw, $fs, $lh) {
+   font-weight: $fw;
+   font-size: $fs;
+   line-height: $lh;
+}
+
+@mixin title {
+   @include font-no-color(var(--fw-5), var(--fs-36), var(--fh-42));
+   text-transform: uppercase;
+}
+
+@mixin button-white {
+   background-color: transparent;
+   color: var(--color-main-light);
+   text-align: center;
+   border: 0.1rem solid var(--color-secondary-light);
+   border-radius: 0.3rem;
+
+   cursor: pointer;
+   &:hover {
+      background-color: var(--color-hover);
+      color: var(--color-secondary-dark);
+      border-color: var(--color-hover);
+   }
+   &:active {
+      background-color: var(--color-main-light);
+      color: var(--color-secondary-dark);
+      border-color: var(--color-main-light);
+   }
+}
+
+@mixin button-gold {
+   text-transform: uppercase;
+   @include font-no-color(var(--fw-7), var(--fs-24), var(--fh-28));
+   padding: 1.7rem 6.5rem;
+   background-color: var(--color-yellow-orange);
+   border-radius: 0.5rem;
+   &-invalid {
+      background-color: var(--color-grey);
+      color: var(--color-main-light);
+   }
+   &:hover,
+   &:focus {
+      background-color: var(--color-yellow-orange);
+      filter: var(--filter);
+   }
+   &:active {
+      color: var(--color-yellow-orange);
+      background-color: transparent;
+      border: 0.1rem solid var(--color-yellow-orange);
+      filter: var(--filter);
+   }
+   &:disabled {
+      background-color: var(--color-grey);
+      color: var(--color-main-light);
+   }
+}
+
+@mixin font($fw, $fs, $lh, $c) {
+   @include font-no-color($fw, $fs, $lh);
+   color: $c;
+}
+
+@mixin buttonForward {
+   display: flex;
+   justify-content: flex-end;
+   color: var(--color-main-light);
+   margin-top: 10rem;
+   > button {
+      @include button-gold;
+   }
+}
+
+@mixin transperrentBlackButton($h: 1.4rem, $w: 3.4rem) {
+   @include font(
+      var(--fw-7),
+      var(--fs-24),
+      var(--fh-28),
+      var(--color-main-dark)
+   );
+   padding: $h $w;
+   border: 0.2rem solid var(--color-main-dark);
+   border-radius: 0.5rem;
+
+   &:hover,
+   &:focus {
+      color: var(--color-yellow-orange);
+      background-color: var(--color-main-light);
+      border: 0.2rem solid var(--color-main-dark);
+      filter: var(--filter);
+   }
+
+   &:active {
+      color: var(--color-main-dark);
+      background-color: var(--color-yellow-orange);
+      border: 0.2rem solid var(--color-yellow-orange);
+   }
+
+   &:disabled {
+      color: var(--color-main-light);
+      background-color: var(--color-grey);
+      border: var(--color-grey);
+   }
+}
+
+@mixin img {
+   > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+   }
+}
+
+// Sliders
+
+@mixin border($border) {
+   position: absolute;
+   border: 0.1rem solid var(--color-bars-light);
+   border-radius: 0.8rem;
+   height: $border;
+}
+@mixin slider($handle, $border) {
+   .ant-slider {
+      &-handle {
+         position: absolute;
+         height: $handle;
+         width: $handle;
+
+         background-color: var(--color-main-light);
+         border: 0;
+         cursor: pointer;
+      }
+      &-rail {
+         @include border($border);
+         width: 100%;
+         background-color: var(--color-bars);
+      }
+
+      &-track {
+         @include border($border);
+         background-color: var(--color-yellow-orange);
+      }
+   }
+}
+
+@mixin hover {
+   &:hover &-track {
+      background-color: var(--color-yellow-orange);
+   }
+
+   &:hover &-rail {
+      background-color: var(--color-bars);
+   }
+}
+
+@mixin tooltip {
+   @include font(
+      var(--fw-4),
+      var(--fs-16),
+      var(--fh-19),
+      var(--color-secondary-light)
+   );
+
+   &-inner {
+      box-shadow: none;
+      background-color: transparent;
+   }
+
+   &-placement-bottom {
+      padding-top: 0;
+   }
+   &-arrow {
+      display: none;
+   }
+}
+
+// Last Tickets - card
+
+@mixin card {
+   @include font(var(--fw-4), var(--fs-16), var(--fh-19), var(--color-grey));
+   padding: 1.8rem;
+   background-color: var(--color-main-light);
+   margin-bottom: 1.7rem;
+   border: 0.1rem solid var(--color-bars-light);
+   height: 16rem;
+}
+
+// pages
+
+@mixin pageLayout {
+   .body {
+      margin: 9.5rem 0 19.5rem;
+      display: flex;
+      justify-content: space-between;
+
+      .wrapper-main {
+         width: 96rem;
+      }
+   }
+
+   // при ширине меньше 1150 прятать aside в бургер?
+
+   @media only screen and (min-width: 1150px) and (max-width: 1399px) {
+      .body {
+         .wrapper-main {
+            width: 90rem;
+            margin-left: 1rem;
+         }
+      }
+   }
+
+   @media only screen and (min-width: 1500px) and (max-width: 1599px) {
+      .body {
+         margin: 9.5rem 5rem 19.5rem;
+      }
+   }
+   @media only screen and (min-width: 1600px) and (max-width: 1699px) {
+      .body {
+         margin: 9.5rem 10rem 19.5rem;
+      }
+   }
+
+   @media only screen and (min-width: 1700px) and (max-width: 1799px) {
+      .body {
+         margin: 9.5rem 15rem 19.5rem 15rem;
+      }
+   }
+
+   @media only screen and (min-width: 1800px) and (max-width: 1899px) {
+      .body {
+         margin: 9.5rem 20rem 19.5rem;
+      }
+   }
+
+   @media only screen and (min-width: 1900px) {
+      .body {
+         margin: 9.5rem 25rem 19.5rem 26rem;
+      }
+   }
+}

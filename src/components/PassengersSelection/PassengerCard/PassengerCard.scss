@@ -1,0 +1,229 @@
+@import '../../../scss/_mixins';
+@import '../../MainSearchBlock/MainSearchBlock.module.scss';
+
+@mixin select($w, $s, $lh) {
+   min-width: $w;
+   max-width: $w;
+   height: 5rem;
+   @include font(400, $s, $lh, var(--color-main-dark));
+
+   .ant-select {
+      &-selector {
+         border: 0.1rem solid var(--color-grey);
+         border-radius: 5px;
+      }
+      &-selector,
+      &-selection-search-input,
+      &-selection-item {
+         min-width: $w;
+         max-width: $w;
+         height: 5rem;
+         display: flex;
+         align-items: center;
+      }
+      &-selection-item {
+         margin: auto;
+      }
+      &-arrow {
+         .anticon > svg {
+            width: 1rem;
+            height: 1rem;
+         }
+      }
+   }
+}
+.ant-form-item {
+   margin: 0;
+}
+
+.passengerCard-select.ant-select.ant-select-in-form-item {
+   @include select(28rem, 2.4rem, 2.8rem);
+}
+.passengerCard-select {
+   .ant-select-item-option-content {
+      @include font(
+         var(--fw-4),
+         var(--fs-24),
+         var(--fh-28),
+         var(--color-main-dark)
+      );
+      text-transform: capitalize;
+   }
+}
+
+.ant-row.ant-form-item-row {
+   .ant-form-item-label {
+      > label {
+         @include font(
+            var(--fw-4),
+            var(--fs-16),
+            var(--fh-19),
+            var(--color-grey)
+         );
+         &::before {
+            content: '';
+         }
+      }
+   }
+}
+
+.ant-input-affix-wrapper.passengerCard-input {
+   .ant-input {
+      @include font(
+         var(--fw-4),
+         var(--fs-24),
+         var(--fh-28),
+         var(--color-main-dark)
+      );
+      text-transform: capitalize;
+   }
+}
+
+.passengerCard-datepicker.ant-picker {
+   @include input(28rem, 5rem);
+   .ant-picker-input {
+      > input {
+         @include font(
+            var(--fw-4),
+            var(--fs-24),
+            var(--fh-28),
+            var(--color-main-dark)
+         );
+         &::placeholder {
+            @include font-no-color(var(--fw-4), var(--fs-18), var(--fh-21));
+         }
+      }
+   }
+
+   &-dropdown {
+      @include font(
+         var(--fw-4),
+         var(--fs-24),
+         var(--fh-28),
+         var(--color-main-dark)
+      );
+      width: 28rem;
+   }
+
+   border: 0.1rem solid var(--color-grey);
+   border-radius: 5px;
+}
+
+.ant-radio-group.ant-radio-group-solid {
+   border: 0.1rem solid var(--color-grey);
+   border-radius: 5px;
+}
+
+.ant-radio-button-wrapper.ant-radio-button-wrapper-in-form-item {
+   height: 5rem;
+   width: 10rem;
+   padding: 0.5rem 3.5rem;
+   @include font(var(--fw-9), var(--fs-30), var(--fh-35), var(--color-black));
+   text-transform: uppercase;
+   &:focus {
+      background-color: var(--color-yellow-orange);
+   }
+}
+.ant-radio-group-solid
+   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
+.ant-radio-button-checked {
+   background-color: var(--color-yellow-orange);
+   color: var(--color-black);
+}
+.ant-radio-button-wrapper:hover {
+   color: var(--color-yellow-orange);
+}
+
+.ant-checkbox {
+   margin-right: 1rem;
+   &-inner::after {
+      width: 1rem;
+      height: 2.2rem;
+      top: 1rem;
+   }
+   &,
+   &-checked,
+   &-input,
+   &-inner {
+      width: 2.8rem;
+      height: 2.8rem;
+      border: 0.1rem solid var(--color-grey);
+      border-radius: 0.5rem;
+   }
+
+   &-checked &-inner {
+      background-color: var(--color-yellow-orange);
+      border: var(--color-yellow-orange);
+   }
+
+   &-wrapper.ant-checkbox-wrapper-in-form-item.passengerCard-checkbox {
+      @include font(
+         var(--fw-4),
+         var(--fs-18),
+         var(--fh-21),
+         var(--color-main-dark)
+      );
+   }
+}
+
+.passengerCard-doc-select-birth-sertificate.ant-select.ant-select-in-form-item {
+   @include select(44.5rem, 1.8rem, 2.1rem);
+}
+.passengerCard-doc-select-pass.ant-select.ant-select-in-form-item {
+   @include select(20.5rem, 1.8rem, 2.1rem);
+}
+
+.passengerCard-doc-select {
+   .ant-select-item-option-content {
+      @include font(
+         var(--fw-4),
+         var(--fs-18),
+         var(--fh-21),
+         var(--color-main-dark)
+      );
+      text-transform: none;
+   }
+}
+
+.passengerCard-seat-select.ant-select.ant-select-in-form-item {
+   @include select(30rem, 1.8rem, 2.1rem);
+}
+
+.passengerCard-checkbox-departureOnly {
+   .ant-form-item-control-input {
+      justify-content: center;
+      .ant-form-item-control-input-content {
+         flex: none;
+      }
+   }
+}
+
+.ant-btn.ant-btn-primary.passengerCard__button {
+   background-color: transparent;
+   color: transparent;
+   border: none;
+   background: transparent;
+   text-shadow: none;
+   box-shadow: none;
+
+   > span {
+      @include transperrentBlackButton;
+   }
+   margin-bottom: 3rem;
+}
+
+.ant-btn:not([disabled]):hover {
+   color: transparent;
+   border: none;
+   background: transparent;
+   text-shadow: none;
+   box-shadow: none;
+}
+
+[ant-click-animating-without-extra-node='true']::after {
+   display: none;
+}
+
+.ant-input-number-input {
+   height: 5rem;
+}
