@@ -1,123 +1,151 @@
-/* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchSeats } from '../../api/service';
 
-import { fetchSeats } from '../thunks/asyncThunks';
+/**
+ * Thunk для получения данных о местах для одного маршрута (туда или обратно).
+ */
+export const getSeats = createAsyncThunk(
+  'seats/getSeats',
+  async ({ id, params }, { rejectWithValue }) => {
+    try {
+      const response = await fetchSeats(id, params);
+      return { id, data: response }; // Возвращаем и id, и данные, чтобы знать, куда их положить
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
-const savedData = localStorage.getItem('seats');
-const empty = {
-   seatsOptions: { departure: [], arrival: [] },
-   loading: false,
-   error: null,
-   selectedSeats: {
-      departure: [],
-      arrival: [],
-   },
+// Вспомогательная функция для пересчета общей стоимости
+const recalculateTotalPrice = (state) => {
+    let total = 0;
+    const processSeats = (seats) => {
+        seats.forEach(seat => {
+            // Цена самого места (верхнее/нижнее)
+            total += seat.price;
+            // Цена доп. услуг (бельё, кондиционер)
+            if (seat.services) {
+                Object.values(seat.services).forEach(service => {
+                    if (service.is_included) total += service.price;
+                });
+            }
+        });
+    };
+    processSeats(state.selectedSeats.departure);
+    processSeats(state.selectedSeats.arrival);
+    state.totalPrice = total;
 };
-const initialState = savedData ? JSON.parse(savedData) : empty;
+
+const initialState = {
+  departureRoute: null, // Полные данные о маршруте "туда"
+  arrivalRoute: null,   // Полные данные о маршруте "обратно"
+  
+  departureSeatsData: [], // Данные о местах в вагонах "туда"
+  arrivalSeatsData: [],   // Данные о местах в вагонах "обратно"
+
+  departureRouteId: null, // ID маршрута "туда" для API запроса
+  arrivalRouteId: null,   // ID маршрута "обратно" для API запроса
+
+  // Объект с выбранными местами
+  selectedSeats: {
+    departure: [], // [{ coach_id, seat_number, price, services: { wifi: { price, is_included } } }]
+    arrival: [],
+  },
+
+  totalPrice: 0,
+  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  error: null,
+};
 
 const seatsSlice = createSlice({
-   name: 'seatsSlice',
-   initialState,
-   reducers: {
-      addSelectedSeats(state, action) {
-         const {
-            number,
-            direction,
-            coachId,
-            coachName,
-            price,
-            priceCoefficient,
-         } = action.payload;
-         const ids = state.selectedSeats[direction].map((el) => el.coachId);
-         const sameId = ids.indexOf(coachId);
+  name: 'seats',
+  initialState,
+  reducers: {
+    /**
+     * Сохраняет данные о выбранных маршрутах перед запросом мест.
+     */
+    setRoutesForSelection: (state, action) => {
+      const { departure, arrival } = action.payload;
+      state.departureRoute = departure;
+      state.arrivalRoute = arrival;
+      state.departureRouteId = departure?._id;
+      state.arrivalRouteId = arrival?._id;
+    },
 
-         if (sameId !== -1) {
-            state.selectedSeats[direction][sameId].seats = [
-               ...state.selectedSeats[direction][sameId].seats,
-               { seat: number, price, priceCoefficient, passengerId: null },
-            ];
-         } else {
-            state.selectedSeats[direction] = [
-               ...state.selectedSeats[direction],
-               {
-                  coachId,
-                  coachName,
-                  seats: [
-                     {
-                        seat: number,
-                        price,
-                        priceCoefficient,
-                        passengerId: null,
-                     },
-                  ],
-               },
-            ];
-         }
-      },
-      addPassengerId(state, action) {
-         const { seat, direction, coachId, passengerId } = action.payload;
+    /**
+     * Добавляет или удаляет место из списка выбранных.
+     */
+    toggleSeat: (state, action) => {
+      const { direction, seatInfo } = action.payload; // direction: 'departure' | 'arrival'
+      const { coach_id, seat_number } = seatInfo;
+      const seatsList = state.selectedSeats[direction];
+      const seatIndex = seatsList.findIndex(
+        s => s.coach_id === coach_id && s.seat_number === seat_number
+      );
 
-         const ids = state.selectedSeats[direction].map((el) => el.coachId);
-         const sameId = ids.indexOf(coachId);
+      if (seatIndex !== -1) {
+        // Место уже выбрано, удаляем его
+        seatsList.splice(seatIndex, 1);
+      } else {
+        // Место не выбрано, добавляем. Инициализируем услуги как невыбранные
+        const services = {
+            wifi: { price: seatInfo.wifi_price || 0, is_included: false },
+            linens: { price: seatInfo.linens_price || 0, is_included: false },
+        };
+        // Если белье включено по умолчанию, отмечаем это
+        if (seatInfo.is_linens_included) {
+            services.linens.is_included = true;
+        }
 
-         if (sameId !== -1) {
-            const allSeats = state.selectedSeats[direction][sameId].seats.map(
-               (el) => el.seat
-            );
+        seatsList.push({ ...seatInfo, services });
+      }
+      
+      recalculateTotalPrice(state);
+    },
 
-            state.selectedSeats[direction][sameId].seats[
-               allSeats.indexOf(seat)
-            ].passengerId = passengerId;
-         }
-      },
-      removeSelectedSeat(state, action) {
-         const { number, direction, coachId } = action.payload;
-         state.selectedSeats[direction].forEach((el) => {
-            if (el.coachId === coachId) {
-               el.seats = el.seats.filter((item) => item.seat !== number);
-            }
-         });
-      },
-      removeAllSelectedSeatsFromCoach(state, action) {
-         const { direction, coachId } = action.payload;
-         state.selectedSeats[direction] = state.selectedSeats[direction].filter(
-            (el) => el.coachId !== coachId
-         );
-      },
-
-      removeSeatsData() {
-         return empty;
-      },
-   },
-   extraReducers: {
-      [fetchSeats.pending]: (state) => {
-         state.loading = true;
-         state.error = null;
-      },
-      [fetchSeats.fulfilled]: (state, action) => {
-         state.loading = false;
-         state.error = null;
-         const { data, direction } = action.payload;
-         state.seatsOptions[direction] = data;
-      },
-      [fetchSeats.rejected]: (state, action) => {
-         state.loading = false;
-         state.error = action.payload;
-      },
-   },
+    /**
+     * Включает или выключает дополнительную услугу для выбранного места.
+     */
+    toggleService: (state, action) => {
+        const { direction, coach_id, seat_number, serviceName } = action.payload;
+        const seat = state.selectedSeats[direction].find(
+            s => s.coach_id === coach_id && s.seat_number === seat_number
+        );
+        if (seat && seat.services[serviceName]) {
+            seat.services[serviceName].is_included = !seat.services[serviceName].is_included;
+        }
+        recalculateTotalPrice(state);
+    },
+    
+    /**
+     * Сбрасывает состояние среза к начальному.
+     */
+    resetSeats: () => initialState,
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getSeats.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(getSeats.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const { id, data } = action.payload;
+        // Кладём данные в соответствующий массив (туда или обратно)
+        if (id === state.departureRouteId) {
+          state.departureSeatsData = data;
+        }
+        if (id === state.arrivalRouteId) {
+          state.arrivalSeatsData = data;
+        }
+      })
+      .addCase(getSeats.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      });
+  },
 });
 
-export const {
-   addSelectedSeats,
-   removeSelectedSeat,
-   removeAllSelectedSeatsFromCoach,
-   removeSeatsData,
-   addPassengerId,
-} = seatsSlice.actions;
+export const { setRoutesForSelection, toggleSeat, toggleService, resetSeats } = seatsSlice.actions;
 
-export const selectSeatsOptions = (state) => state.seats.seatsOptions;
-export const selectSelectedSeats = (state) => state.seats.selectedSeats;
-export const selectLoading = (state) => state.seats.loading;
-export const selectError = (state) => state.seats.error;
-
-export default seatsSlice;
+export default seatsSlice.reducer;

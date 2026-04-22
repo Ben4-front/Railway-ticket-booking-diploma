@@ -1,0 +1,118 @@
+/* src/pages/SuccessPage.css */
+
+.success-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px); /* Вычитаем высоту хедера и футера */
+    background: #f7f5f9;
+    padding: 40px 20px;
+}
+
+.success-card {
+    width: 100%;
+    max-width: 850px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.success-card__header {
+    background-color: #ffa800;
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.success-card__header h2 {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.success-card__body {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.order-summary {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.order-summary .price {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.order-summary .currency {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.instructions {
+    width: 100%;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.instruction-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 18px;
+}
+
+/* Стили для иконок. Вам нужно будет добавить свои SVG или иконочные шрифты */
+.instruction-item::before {
+    content: '';
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    /* background: url(...) no-repeat center center; */
+    background-color: #f0f0f0; /* Заглушка */
+    border-radius: 50%;
+}
+
+
+.success-card__footer {
+    padding: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button--back-to-main {
+    background-color: #fff;
+    color: #292929;
+    border: 1px solid #292929;
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.button--back-to-main:hover {
+    background-color: #292929;
+    color: #fff;
+}

@@ -1,0 +1,116 @@
+/* src/pages/PaymentPage.css */
+
+.payment-form {
+    max-width: 960px;
+    margin: 40px auto;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-section {
+    border-bottom: 1px dashed #c4c4c4;
+    padding: 20px;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+.form-section__title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.form-section__content--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px 30px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field label {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #928f94;
+}
+
+.form-field input {
+    padding: 12px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: #ffa800;
+}
+
+.form-field--disabled input {
+    background-color: #f3f3f3;
+    cursor: not-allowed;
+}
+
+.error-text {
+    color: #ff0000;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.payment-option input[type="radio"] {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+}
+
+.online-payment-fields {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+}
+
+.online-payment-fields p {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.button--next {
+    background-color: #ffa800;
+    color: #fff;
+    border: none;
+    padding: 18px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button--next:hover {
+    background-color: #ff8c00;
+}

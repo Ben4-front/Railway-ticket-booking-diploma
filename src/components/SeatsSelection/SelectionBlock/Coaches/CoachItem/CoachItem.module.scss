@@ -1,8 +1,0 @@
-@import '../../SelectionBlock.module.scss';
-.coachNames {
-   @include font(var(--fw-7), var(--fs-24), var(--fh-28), var(--color-black));
-   margin-right: 0.5rem;
-   &-active {
-      color: var(--color-main-light);
-   }
-}
