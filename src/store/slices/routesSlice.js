@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchRoutes } from '../../api/service';
+import { fetchRoutes } from './searchSlice.js' 
 
 /**
  * Thunk для асинхронного получения маршрутов с сервера.

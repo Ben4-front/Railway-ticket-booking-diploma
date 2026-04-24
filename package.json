@@ -2,7 +2,7 @@
   "name": "railway-booking-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://<YOUR_GITHUB_USERNAME>.github.io/<YOUR_REPOSITORY_NAME>",
+  "homepage": "https://github.com/Ben4-front/Railway-ticket-booking-diploma",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
     "classnames": "^2.5.1",

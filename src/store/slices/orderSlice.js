@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { postOrder } from '../../api/service';
+import { postOrder } from './searchSlice'
+import { fetchRoutes } from './searchSlice.js'
 
 export const submitOrder = createAsyncThunk(
   'order/submitOrder',

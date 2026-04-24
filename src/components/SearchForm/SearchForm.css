@@ -1,0 +1,91 @@
+/* src/components/SearchForm/SearchForm.css */
+
+.search-form {
+  background: rgba(41, 41, 41, 0.8);
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.search-form--horizontal {
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 20px;
+}
+
+.form__group {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+}
+
+.form__field {
+    position: relative;
+    flex: 1;
+}
+
+.form__input {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #fff;
+    border: 1px solid #c4c4c4;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+.form__swap-btn {
+    width: 40px;
+    height: 40px;
+    align-self: center;
+    background: url('https://i.ibb.co/xGLd3J0/swap.svg') no-repeat center center;
+    background-color: #fff;
+    border: 1px solid #c4c4c4;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.form__submit-btn {
+    background-color: #FFA800;
+    color: #fff;
+    border: none;
+    padding: 18px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-self: flex-end; /* Для вертикальной формы */
+}
+
+.search-form--horizontal .form__submit-btn {
+    align-self: stretch; /* Растягиваем кнопку в горизонтальной форме */
+}
+
+/* Стили для выпадающего списка городов */
+.city-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #c4c4c4;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.city-suggestions li {
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #292929;
+}
+
+.city-suggestions li:hover {
+    background-color: #f7f5f9;
+}

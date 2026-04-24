@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { subscribe } from '../../api/service';
+import { fetchRoutes } from './searchSlice.js' 
 
 export const postSubscription = createAsyncThunk(
   'subscribe/postSubscription',

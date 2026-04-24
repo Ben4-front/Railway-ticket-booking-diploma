@@ -1,0 +1,31 @@
+/* src/pages/MainPage.css */
+
+.main-page-banner {
+    padding-top: calc(90px + 60px); /* Высота хедера + дополнительный отступ */
+    padding-bottom: 60px;
+    text-align: center;
+    background: url(https://netology-code.github.io/fe-diplom/assets/images/banner.png) no-repeat center center;
+    background-size: cover;
+    color: white;
+}
+
+.main-page-banner__title {
+    font-size: 72px;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 0 0 50px 0;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.main-page-section {
+    padding: 80px 0;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff; /* Белый фон для секций контента */
+}
+
+.main-page-section__title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #292929;
+}

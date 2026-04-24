@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { getCities, setField, setPoint, swapPoints } from '../../store/slices/searchSlice';
 import useDebounce from '../../hooks/useDebounce';
 import classNames from 'classnames';
+import './SearchForm.css';
 
 const CityInput = ({ direction }) => {
     const dispatch = useDispatch();
     const point = useSelector((state) => state.search[direction]);
-    const { cities, status } = useSelector((state) => state.search);
+    // ВАЖНО: убедитесь, что вы правильно получаете данные из стора
+    const { items: cities, status } = useSelector((state) => state.search.cities);
 
     const [localValue, setLocalValue] = useState(point.name);
     const [isFocused, setIsFocused] = useState(false);
@@ -19,10 +21,22 @@ const CityInput = ({ direction }) => {
     }, [point.name]);
 
     useEffect(() => {
+        // --- ОТЛАДКА ---
+        console.log(`Direction: ${direction}, Debounced Value: '${debouncedValue}', Focused: ${isFocused}`);
+
         if (debouncedValue.length > 1 && isFocused) {
-            dispatch(getCities(debouncedValue));
+            console.log(`Dispatching getCities for '${debouncedValue}'`); // <--- Увидим, отправляется ли запрос
+            dispatch(getCities({ name: debouncedValue, direction }));
         }
-    }, [debouncedValue, isFocused, dispatch]);
+    }, [debouncedValue, isFocused, dispatch, direction]);
+    
+    // --- ОТЛАДКА ---
+    useEffect(() => {
+        if (isFocused) {
+            console.log('Cities received:', cities); // <--- Увидим, приходят ли города в компонент
+        }
+    }, [cities, isFocused]);
+
 
     const handleSelect = (city) => {
         dispatch(setPoint({ direction, city }));
@@ -41,6 +55,7 @@ const CityInput = ({ direction }) => {
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             />
+            {/* Условие для показа подсказок */}
             {isFocused && cities.length > 0 && (
                 <ul className="city-suggestions">
                     {cities.map((city) => (

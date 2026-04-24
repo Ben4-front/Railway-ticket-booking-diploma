@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchSeats } from '../../api/service';
+import { fetchRoutes } from './searchSlice.js'
 
 /**
  * Thunk для получения данных о местах для одного маршрута (туда или обратно).
