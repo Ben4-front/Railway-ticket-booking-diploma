@@ -1,6 +1,6 @@
 .header {
     background-color: rgba(41, 41, 41, 0.8); /* Полупрозрачный фон */
-    position: absolute; /* <-- ВАЖНО: вернуть absolute */
+    position: relative; /* <-- ВАЖНО: вернуть absolute */
     top: 0;
     left: 0;
     width: 100%;

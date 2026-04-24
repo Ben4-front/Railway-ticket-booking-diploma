@@ -85,10 +85,11 @@ export const subscribe = (email) => {
  */
 export const getCities = createAsyncThunk(
   'search/getCities',
-  async (name, { rejectWithValue }) => {
+  // thunk принимает объект, например { name: 'мо', direction: 'from' }
+  async (params, { rejectWithValue }) => { 
     try {
-      // Здесь нет нужды в импорте, так как функция fetchCities уже определена выше
-      const response = await fetchCities(name);
+      // В fetchCities нужно передать только имя, а не весь объект
+      const response = await fetchCities(params.name); 
       return response;
     } catch (error) {
       return rejectWithValue(error.message);

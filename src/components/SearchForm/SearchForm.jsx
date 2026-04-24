@@ -1,3 +1,5 @@
+// src/components/SearchForm/SearchForm.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -6,12 +8,11 @@ import useDebounce from '../../hooks/useDebounce';
 import classNames from 'classnames';
 import './SearchForm.css';
 
+// Код CityInput оставляем без изменений
 const CityInput = ({ direction }) => {
     const dispatch = useDispatch();
     const point = useSelector((state) => state.search[direction]);
-    // ВАЖНО: убедитесь, что вы правильно получаете данные из стора
-    const { items: cities, status } = useSelector((state) => state.search.cities);
-
+    const { items: cities, status, loadingFor } = useSelector((state) => state.search.cities);
     const [localValue, setLocalValue] = useState(point.name);
     const [isFocused, setIsFocused] = useState(false);
     const debouncedValue = useDebounce(localValue, 300);
@@ -21,28 +22,18 @@ const CityInput = ({ direction }) => {
     }, [point.name]);
 
     useEffect(() => {
-        // --- ОТЛАДКА ---
-        console.log(`Direction: ${direction}, Debounced Value: '${debouncedValue}', Focused: ${isFocused}`);
-
         if (debouncedValue.length > 1 && isFocused) {
-            console.log(`Dispatching getCities for '${debouncedValue}'`); // <--- Увидим, отправляется ли запрос
             dispatch(getCities({ name: debouncedValue, direction }));
         }
     }, [debouncedValue, isFocused, dispatch, direction]);
-    
-    // --- ОТЛАДКА ---
-    useEffect(() => {
-        if (isFocused) {
-            console.log('Cities received:', cities); // <--- Увидим, приходят ли города в компонент
-        }
-    }, [cities, isFocused]);
-
 
     const handleSelect = (city) => {
         dispatch(setPoint({ direction, city }));
         setLocalValue(city.name);
         setIsFocused(false);
     };
+
+    const isLoading = status === 'loading' && loadingFor === direction;
 
     return (
         <div className="form__field">
@@ -55,8 +46,8 @@ const CityInput = ({ direction }) => {
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             />
-            {/* Условие для показа подсказок */}
-            {isFocused && cities.length > 0 && (
+            {isLoading && <div className="loading-spinner"></div>}
+            {isFocused && cities.length > 0 && !isLoading && (
                 <ul className="city-suggestions">
                     {cities.map((city) => (
                         <li key={city._id} onMouseDown={() => handleSelect(city)}>
@@ -75,9 +66,20 @@ export default function SearchForm({ variant = 'default' }) {
     const { from, to, date_start, date_end } = useSelector((state) => state.search);
     
     const handleSubmit = (e) => {
+        console.log('Обработчик handleSubmit сработал!');
         e.preventDefault();
-        const params = { from_city_id: from.id, to_city_id: to.id, date_start, date_end };
-        const query = new URLSearchParams(Object.entries(params).filter(([, v]) => v != null)).toString();
+
+        const params = {
+            from_city_id: from.id,
+            to_city_id: to.id,
+            date_start: date_start,
+            date_end: date_end,
+        };
+
+        const filteredParams = Object.entries(params).filter(([, value]) => value != null && value !== '');
+        const query = new URLSearchParams(filteredParams).toString();
+        
+        console.log(`Перехожу на /selection?${query}`);
         navigate(`/selection?${query}`);
     };
 
@@ -85,11 +87,20 @@ export default function SearchForm({ variant = 'default' }) {
         'search-form--horizontal': variant === 'horizontal'
     });
 
+    // ===============================================
+    //           ГЛАВНОЕ ИСПРАВЛЕНИЕ ЗДЕСЬ
+    // ===============================================
+    // Мы оборачиваем всё в тег <form> и вешаем onSubmit на него.
+    // Кнопка смены направления находится внутри, но с type="button",
+    // что предотвращает отправку формы по клику на нее.
     return (
         <form className={formClasses} onSubmit={handleSubmit}>
             <div className="form__group form__group--cities">
                 <CityInput direction="from" />
+                
+                {/* Эта кнопка НЕ отправляет форму, так как у нее type="button" */}
                 <button type="button" className="form__swap-btn" onClick={() => dispatch(swapPoints())} />
+
                 <CityInput direction="to" />
             </div>
             <div className="form__group form__group--dates">
@@ -106,6 +117,8 @@ export default function SearchForm({ variant = 'default' }) {
                     onChange={(e) => dispatch(setField({ field: 'date_end', value: e.target.value }))}
                 />
             </div>
+
+            {/* Эта кнопка ОТПРАВЛЯЕТ форму, так как у нее type="submit" */}
             <button className="form__submit-btn" type="submit" disabled={!from.id || !to.id}>
                 Найти билеты
             </button>
